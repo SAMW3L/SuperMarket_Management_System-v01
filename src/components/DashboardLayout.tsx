@@ -6,18 +6,18 @@ import {
   Package,
   ShoppingCart,
   Users,
-  BarChart3,
+  // BarChart3,
   Settings,
   LogOut,
   FileText,
 } from 'lucide-react';
 
 const navItems = [
-  { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
+  { icon: LayoutDashboard, label: 'Dashboard', path: '/analytics' },
   { icon: Package, label: 'Inventory', path: '/inventory' },
   { icon: ShoppingCart, label: 'Sales', path: '/sales' },
   { icon: Users, label: 'Employees', path: '/employees' },
-  { icon: BarChart3, label: 'Analytics', path: '/analytics' },
+  // { icon: BarChart3, label: 'Analytics', path: '/analytics' },
   { icon: FileText, label: 'Reports', path: '/reports' },
   { icon: Settings, label: 'Settings', path: '/settings' },
 ];

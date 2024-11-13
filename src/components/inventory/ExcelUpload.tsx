@@ -53,7 +53,8 @@ export default function ExcelUpload({ onUpload }: ExcelUploadProps) {
         <div className="flex flex-col items-center">
           <Upload className="h-8 w-8 text-gray-400 mb-2" />
           <p className="text-sm text-gray-500 mb-2">
-            Drag and drop your Excel file here, or click to select
+            Drag and drop your Excel file here with these column:
+            Name,Category,Price,Stock,ExpireDate or click to select
           </p>
           <input
             type="file"

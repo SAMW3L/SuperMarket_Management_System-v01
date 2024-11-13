@@ -12,13 +12,13 @@ import {
 } from 'lucide-react';
 import { useSettingsStore } from '../../store/settingsStore';
 
-const SUPPORTED_LANGUAGES = [
-  { code: 'en', name: 'English' },
-  { code: 'es', name: 'Spanish' },
-  { code: 'fr', name: 'French' },
-  { code: 'de', name: 'German' },
-  { code: 'zh', name: 'Chinese' },
-];
+// const SUPPORTED_LANGUAGES = [
+//   { code: 'en', name: 'English' },
+//   { code: 'es', name: 'Spanish' },
+//   { code: 'fr', name: 'French' },
+//   { code: 'de', name: 'German' },
+//   { code: 'zh', name: 'Chinese' },
+// ];
 
 const PAYMENT_METHODS = [
   { id: 'cash', name: 'Cash', enabled: true },
@@ -67,13 +67,13 @@ export default function SettingsPage() {
   };
 
   const handleSaveChanges = () => {
-    // In a real application, you would save all settings to the backend
+    // In a real application,save all settings to the backend
     alert('Settings saved successfully!');
   };
 
   const settingsSections = [
     {
-      title: 'Store Information',
+      title: 'SuperMarket Information',
       icon: Store,
       settings: [
         {
@@ -98,6 +98,34 @@ export default function SettingsPage() {
         },
       ],
     },
+
+    //RECEIPT SETTINGS
+    {
+      title: 'Receipt Settings',
+      icon: Printer,
+      settings: [
+        {
+          label: 'Store Logo on Receipt',
+          type: 'toggle',
+          value: receipt.showLogo,
+          onChange: (value: boolean) => updateReceipt({ showLogo: value }),
+        },
+        {
+          label: 'Receipt Footer Message',
+          value: receipt.footerMessage,
+          onChange: (value: string) =>
+            updateReceipt({ footerMessage: value }),
+        },
+        {
+          label: 'Print Order ID',
+          type: 'toggle',
+          value: receipt.printOrderId,
+          onChange: (value: boolean) =>
+            updateReceipt({ printOrderId: value }),
+        },
+      ],
+    },
+
     // ... other existing sections ...
   ];
 
@@ -220,7 +248,7 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        {/* Language Settings */}
+        {/* Language Settings
         <div className="bg-white rounded-lg shadow-sm overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
             <div className="flex items-center gap-3">
@@ -244,7 +272,7 @@ export default function SettingsPage() {
               </select>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Payment Methods */}
         <div className="bg-white rounded-lg shadow-sm overflow-hidden">
@@ -282,6 +310,9 @@ export default function SettingsPage() {
             </div>
           </div>
         </div>
+
+        {/* Receipt settings */}
+
 
         {/* User Permissions */}
         <div className="bg-white rounded-lg shadow-sm overflow-hidden">

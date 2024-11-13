@@ -11,10 +11,10 @@ interface SettingsState extends Settings {
 
 export const useSettingsStore = create<SettingsState>((set) => ({
   store: {
-    name: 'SuperMarket Plus',
-    address: '123 Market Street',
-    phone: '(555) 123-4567',
-    taxId: '12-3456789',
+    name: 'SuperMarket',
+    address: 'Market Street',
+    phone: '0701010101',
+    taxId: '1234',
   },
   notifications: {
     lowStockAlerts: true,
@@ -37,7 +37,7 @@ export const useSettingsStore = create<SettingsState>((set) => ({
     { id: 'credit', name: 'Credit Card', enabled: true },
     { id: 'debit', name: 'Debit Card', enabled: true },
     { id: 'mobile', name: 'Mobile Payment', enabled: false },
-    { id: 'crypto', name: 'Cryptocurrency', enabled: false },
+    { id: 'other', name: 'Other Payment Method', enabled: false },
   ],
   updateStoreInfo: (info) =>
     set((state) => ({
