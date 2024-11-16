@@ -33,7 +33,7 @@ export default function ProductForm({ product, onSubmit, onClose }: ProductFormP
             onClick={onClose}
             className="p-2 hover:bg-gray-100 rounded-full"
           >
-            <X className="h-5 w-5 text-gray-500" />
+            <X className="h-5 w-5 text-red-500" />
           </button>
         </div>
 
@@ -45,7 +45,7 @@ export default function ProductForm({ product, onSubmit, onClose }: ProductFormP
               required
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-1"
             />
           </div>
 
@@ -55,7 +55,7 @@ export default function ProductForm({ product, onSubmit, onClose }: ProductFormP
               required
               value={formData.category}
               onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-1"
             >
               <option value="">Select a category</option>
               <option value="Groceries">Groceries</option>
@@ -75,7 +75,7 @@ export default function ProductForm({ product, onSubmit, onClose }: ProductFormP
               step="0.01"
               value={formData.price}
               onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) })}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-1"
             />
           </div>
 
@@ -87,7 +87,7 @@ export default function ProductForm({ product, onSubmit, onClose }: ProductFormP
               min="0"
               value={formData.stock}
               onChange={(e) => setFormData({ ...formData, stock: parseInt(e.target.value) })}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-1"
             />
           </div>
 
@@ -98,7 +98,7 @@ export default function ProductForm({ product, onSubmit, onClose }: ProductFormP
               required
               value={formData.expiryDate}
               onChange={(e) => setFormData({ ...formData, expiryDate: e.target.value })}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-1"
             />
           </div>
 

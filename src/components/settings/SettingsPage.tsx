@@ -4,35 +4,36 @@ import {
   Bell,
   Shield,
   Printer,
-  Mail,
   CreditCard,
   Users,
-  Globe,
   Upload,
 } from 'lucide-react';
 import { useSettingsStore } from '../../store/settingsStore';
-
-// const SUPPORTED_LANGUAGES = [
-//   { code: 'en', name: 'English' },
-//   { code: 'es', name: 'Spanish' },
-//   { code: 'fr', name: 'French' },
-//   { code: 'de', name: 'German' },
-//   { code: 'zh', name: 'Chinese' },
-// ];
 
 const PAYMENT_METHODS = [
   { id: 'cash', name: 'Cash', enabled: true },
   { id: 'credit', name: 'Credit Card', enabled: true },
   { id: 'debit', name: 'Debit Card', enabled: true },
   { id: 'mobile', name: 'Mobile Payment', enabled: false },
-  { id: 'crypto', name: 'Cryptocurrency', enabled: false },
+  { id: 'other', name: 'Other Payment Method', enabled: false },
 ];
 
 const USER_PERMISSIONS = [
-  { role: 'admin', permissions: ['all'] },
-  { role: 'manager', permissions: ['view', 'create', 'edit'] },
-  { role: 'cashier', permissions: ['view', 'create'] },
-  { role: 'stock', permissions: ['view', 'edit-inventory'] },
+  { role: 'admin', label: 'Administrator', permissions: ['all'] },
+  { role: 'manager', label: 'Manager', permissions: ['view', 'create', 'edit'] },
+  { role: 'cashier', label: 'Cashier', permissions: ['view', 'create'] },
+  { role: 'stock', label: 'Stock Clerk', permissions: ['view', 'edit-inventory'] },
+];
+
+const AVAILABLE_PERMISSIONS = [
+  { id: 'view', label: 'View Records' },
+  { id: 'create', label: 'Create Records' },
+  { id: 'edit', label: 'Edit Records' },
+  { id: 'delete', label: 'Delete Records' },
+  { id: 'edit-inventory', label: 'Manage Inventory' },
+  { id: 'view-reports', label: 'View Reports' },
+  { id: 'manage-users', label: 'Manage Users' },
+  { id: 'manage-settings', label: 'Manage Settings' },
 ];
 
 export default function SettingsPage() {
@@ -47,7 +48,6 @@ export default function SettingsPage() {
     updateReceipt,
   } = useSettingsStore();
 
-  const [selectedLanguage, setSelectedLanguage] = useState('en');
   const [paymentMethods, setPaymentMethods] = useState(PAYMENT_METHODS);
   const [permissions, setPermissions] = useState(USER_PERMISSIONS);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -66,8 +66,22 @@ export default function SettingsPage() {
     }
   };
 
+  const handlePermissionChange = (role: string, permissionId: string) => {
+    setPermissions((prevPermissions) =>
+      prevPermissions.map((rolePermissions) =>
+        rolePermissions.role === role
+          ? {
+              ...rolePermissions,
+              permissions: rolePermissions.permissions.includes(permissionId)
+                ? rolePermissions.permissions.filter((p) => p !== permissionId)
+                : [...rolePermissions.permissions, permissionId],
+            }
+          : rolePermissions
+      )
+    );
+  };
+
   const handleSaveChanges = () => {
-    // In a real application,save all settings to the backend
     alert('Settings saved successfully!');
   };
 
@@ -92,14 +106,12 @@ export default function SettingsPage() {
           onChange: (value: string) => updateStoreInfo({ phone: value }),
         },
         {
-          label: 'Tax ID',
+          label: 'TIN Number',
           value: store.taxId,
           onChange: (value: string) => updateStoreInfo({ taxId: value }),
         },
       ],
     },
-
-    //RECEIPT SETTINGS
     {
       title: 'Receipt Settings',
       icon: Printer,
@@ -125,8 +137,69 @@ export default function SettingsPage() {
         },
       ],
     },
-
-    // ... other existing sections ...
+    {
+      title: 'Notifications',
+      icon: Bell,
+      settings: [
+        {
+          label: 'Low Stock Alerts',
+          type: 'toggle',
+          value: notifications.lowStockAlerts,
+          onChange: (value: boolean) =>
+            updateNotifications({ lowStockAlerts: value }),
+        },
+        {
+          label: 'Expiring Items Reports',
+          type: 'toggle',
+          value: notifications.expireReport,
+          onChange: (value: boolean) =>
+            updateNotifications({ expireReport: value }),
+        },
+        {
+          label: 'Employee Performance',
+          type: 'toggle',
+          value: notifications.employeePerformance,
+          onChange: (value: boolean) =>
+            updateNotifications({ employeePerformance: value }),
+        },
+        {
+          label: 'Sales Reports',
+          type: 'toggle',
+          value: notifications.salesReports,
+          onChange: (value: boolean) =>
+            updateNotifications({ salesReports: value }),
+        },
+      ],
+    },
+    {
+      title: 'Security',
+      icon: Shield,
+      settings: [
+        {
+          label: 'Two-Factor Authentication',
+          type: 'toggle',
+          value: security.twoFactorAuth,
+          onChange: (value: boolean) =>
+            updateSecurity({ twoFactorAuth: value }),
+        },
+        {
+          label: 'Password Requirements',
+          type: 'select',
+          value: security.passwordRequirements,
+          options: ['basic', 'medium', 'strong'],
+          onChange: (value: string) =>
+            updateSecurity({ passwordRequirements: value as 'basic' | 'medium' | 'strong' }),
+        },
+        {
+          label: 'Session Timeout',
+          type: 'select',
+          value: security.sessionTimeout,
+          options: ['15m', '30m', '1h', '4h'],
+          onChange: (value: string) =>
+            updateSecurity({ sessionTimeout: value as '15m' | '30m' | '1h' | '4h' }),
+        },
+      ],
+    },
   ];
 
   return (
@@ -248,32 +321,6 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        {/* Language Settings
-        <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-          <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
-            <div className="flex items-center gap-3">
-              <Globe className="h-5 w-5 text-gray-500" />
-              <h2 className="text-lg font-medium text-gray-900">Language & Region</h2>
-            </div>
-          </div>
-          <div className="p-6 space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">System Language</label>
-              <select
-                value={selectedLanguage}
-                onChange={(e) => setSelectedLanguage(e.target.value)}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-              >
-                {SUPPORTED_LANGUAGES.map((lang) => (
-                  <option key={lang.code} value={lang.code}>
-                    {lang.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-        </div> */}
-
         {/* Payment Methods */}
         <div className="bg-white rounded-lg shadow-sm overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
@@ -289,8 +336,8 @@ export default function SettingsPage() {
                   <span className="text-sm font-medium text-gray-700">{method.name}</span>
                   <button
                     onClick={() => {
-                      setPaymentMethods(methods =>
-                        methods.map(m =>
+                      setPaymentMethods((methods) =>
+                        methods.map((m) =>
                           m.id === method.id ? { ...m, enabled: !m.enabled } : m
                         )
                       );
@@ -311,9 +358,6 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        {/* Receipt settings */}
-
-
         {/* User Permissions */}
         <div className="bg-white rounded-lg shadow-sm overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
@@ -322,24 +366,31 @@ export default function SettingsPage() {
               <h2 className="text-lg font-medium text-gray-900">User Permissions</h2>
             </div>
           </div>
-          <div className="p-6">
-            <div className="space-y-6">
-              {permissions.map((role) => (
-                <div key={role.role} className="space-y-2">
-                  <h3 className="text-sm font-medium text-gray-900 capitalize">{role.role}</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {role.permissions.map((permission) => (
-                      <span
-                        key={permission}
-                        className="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800"
-                      >
-                        {permission}
-                      </span>
-                    ))}
-                  </div>
+          <div className="p-6 space-y-6">
+            {permissions.map((role) => (
+              <div key={role.role} className="space-y-3">
+                <h3 className="text-sm font-medium text-gray-900">{role.label}</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {AVAILABLE_PERMISSIONS.map((permission) => (
+                    <label key={permission.id} className="flex items-center space-x-2">
+                      <input
+                        type="checkbox"
+                        checked={role.permissions.includes(permission.id) || role.permissions.includes('all')}
+                        onChange={() => handlePermissionChange(role.role, permission.id)}
+                        disabled={role.role === 'admin'} // Admin always has all permissions
+                        className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                      />
+                      <span className="text-sm text-gray-700">{permission.label}</span>
+                    </label>
+                  ))}
                 </div>
-              ))}
-            </div>
+                <div className="border-t border-gray-200 pt-3">
+                  <p className="text-xs text-gray-500">
+                    Current permissions: {role.permissions.join(', ')}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

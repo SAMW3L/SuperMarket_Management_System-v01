@@ -115,7 +115,7 @@ export default function PaymentModal({ onClose }: PaymentModalProps) {
 
         <div className="p-4 space-y-4">
           <div className="text-lg font-bold text-gray-900">
-            Total: ${total.toFixed(2)}
+            Total: Tsh.{total.toFixed(2)}
           </div>
 
           <div className="space-y-2">

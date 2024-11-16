@@ -37,7 +37,7 @@ export default function EmployeeForm({ employee, onSubmit, onClose }: EmployeeFo
             onClick={onClose}
             className="p-2 hover:bg-gray-100 rounded-full"
           >
-            <X className="h-5 w-5 text-gray-500" />
+            <X className="h-5 w-5 text-red-500" />
           </button>
         </div>
 
@@ -49,7 +49,7 @@ export default function EmployeeForm({ employee, onSubmit, onClose }: EmployeeFo
               required
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-1"
             />
           </div>
 
@@ -60,7 +60,7 @@ export default function EmployeeForm({ employee, onSubmit, onClose }: EmployeeFo
               required
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-1"
             />
           </div>
 
@@ -71,7 +71,7 @@ export default function EmployeeForm({ employee, onSubmit, onClose }: EmployeeFo
               required
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-1"
             />
           </div>
 
@@ -81,7 +81,7 @@ export default function EmployeeForm({ employee, onSubmit, onClose }: EmployeeFo
               required
               value={formData.role}
               onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-1"
             >
               <option value="">Select a role</option>
               <option value="Store Manager">Store Manager</option>
@@ -97,7 +97,7 @@ export default function EmployeeForm({ employee, onSubmit, onClose }: EmployeeFo
               required
               value={formData.department}
               onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-1"
             >
               <option value="">Select a department</option>
               <option value="Management">Management</option>
@@ -116,7 +116,7 @@ export default function EmployeeForm({ employee, onSubmit, onClose }: EmployeeFo
               step="1000"
               value={formData.salary}
               onChange={(e) => setFormData({ ...formData, salary: parseInt(e.target.value) })}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-1"
             />
           </div>
 
@@ -126,7 +126,7 @@ export default function EmployeeForm({ employee, onSubmit, onClose }: EmployeeFo
               required
               value={formData.address}
               onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-1"
               rows={2}
             />
           </div>
@@ -138,7 +138,7 @@ export default function EmployeeForm({ employee, onSubmit, onClose }: EmployeeFo
               required
               value={formData.joinDate}
               onChange={(e) => setFormData({ ...formData, joinDate: e.target.value })}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-1"
             />
           </div>
 

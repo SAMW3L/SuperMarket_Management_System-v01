@@ -79,14 +79,14 @@ export default function AnalyticsPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard
           title="Total Sales"
-          value={`$${totalSales.toFixed(2)}`}
+          value={`Tsh.${totalSales.toFixed(2)}`}
           change="+14.5%"
           icon={DollarSign}
           color="blue"
         />
         <StatCard
           title="Total Profit"
-          value={`$${totalProfit.toFixed(2)}`}
+          value={`Tsh.${totalProfit.toFixed(2)}`}
           change="+8.2%"
           icon={TrendingUp}
           color="green"

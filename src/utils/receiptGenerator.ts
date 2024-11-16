@@ -50,8 +50,8 @@ export function generateReceipt(
             <tr>
               <td>${item.name}</td>
               <td style="text-align: right">${item.quantity}</td>
-              <td style="text-align: right">$${item.price.toFixed(2)}</td>
-              <td style="text-align: right">$${(item.quantity * item.price).toFixed(2)}</td>
+              <td style="text-align: right">Tsh.${item.price.toFixed(2)}</td>
+              <td style="text-align: right">Tsh.${(item.quantity * item.price).toFixed(2)}</td>
             </tr>
           `).join('')}
         </table>
@@ -59,7 +59,7 @@ export function generateReceipt(
         <div class="divider"></div>
 
         <div class="total">
-          <p>Total: $${sale.total.toFixed(2)}</p>
+          <p>Total: Tsh.${sale.total.toFixed(2)}</p>
         </div>
 
         <div class="footer">

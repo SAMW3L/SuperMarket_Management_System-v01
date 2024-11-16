@@ -63,7 +63,8 @@ export interface Settings {
   notifications: {
     lowStockAlerts: boolean;
     salesReports: boolean;
-    employeeUpdates: boolean;
+    expireReport: boolean;
+    employeePerformance:boolean;
   };
   security: {
     twoFactorAuth: boolean;

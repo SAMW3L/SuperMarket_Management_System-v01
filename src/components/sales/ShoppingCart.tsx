@@ -20,7 +20,7 @@ export default function ShoppingCart() {
               <div>
                 <h3 className="text-sm font-medium text-gray-900">{item.name}</h3>
                 <p className="text-sm text-gray-500">
-                  ${item.price.toFixed(2)} × {item.quantity}
+                Tsh.{item.price.toFixed(2)} × {item.quantity}
                 </p>
               </div>
               <div className="flex items-center gap-2">
@@ -61,7 +61,7 @@ export default function ShoppingCart() {
           <div className="flex items-center justify-between mb-4">
             <span className="text-lg font-medium text-gray-900">Total</span>
             <span className="text-lg font-bold text-gray-900">
-              ${total.toFixed(2)}
+            Tsh.{total.toFixed(2)}
             </span>
           </div>
         </div>

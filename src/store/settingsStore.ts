@@ -19,7 +19,8 @@ export const useSettingsStore = create<SettingsState>((set) => ({
   notifications: {
     lowStockAlerts: true,
     salesReports: true,
-    employeeUpdates: false,
+    expireReport: false,
+    employeePerformance:true,
   },
   security: {
     twoFactorAuth: false,

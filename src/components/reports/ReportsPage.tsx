@@ -59,7 +59,7 @@ export default function ReportsPage() {
         Name: p.name,
         Category: p.category,
         'Current Stock': p.stock,
-        Price: `$${p.price.toFixed(2)}`,
+        Price: `Tsh.${p.price.toFixed(2)}`,
       })),
     },
     {
@@ -91,10 +91,10 @@ export default function ReportsPage() {
         Role: e.role,
         Department: e.department,
         'Total Transactions': e.totalTransactions,
-        'Total Revenue': `$${e.totalRevenue.toFixed(2)}`,
-        'Average Transaction': `$${e.averageTransaction.toFixed(2)}`,
+        'Total Revenue': `Tsh.${e.totalRevenue.toFixed(2)}`,
+        'Average Transaction': `Tsh.${e.averageTransaction.toFixed(2)}`,
         'Recent Transactions': e.transactionDetails.slice(0, 5).map(t => 
-          `${t.date}: ${t.orderId} - $${t.total.toFixed(2)}`
+          `${t.date}: ${t.orderId} - Tsh.${t.total.toFixed(2)}`
         ).join('\n'),
       })),
     },
@@ -117,7 +117,7 @@ export default function ReportsPage() {
           'Employee': s.employeeName,
           'Date': new Date(s.timestamp).toLocaleDateString(),
           'Items': s.items.map(item => `${item.quantity}x ${item.name}`).join(', '),
-          'Total': `$${s.total.toFixed(2)}`,
+          'Total': `Tsh.${s.total.toFixed(2)}`,
           'Payment Method': s.paymentMethod,
         }));
       },

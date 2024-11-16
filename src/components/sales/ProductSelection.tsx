@@ -4,7 +4,7 @@ import { useInventoryStore } from '../../store/inventoryStore';
 import { useSalesStore } from '../../store/salesStore';
 
 export default function ProductSelection() {
-  const { products } = useInventoryStore();
+  const { products, updateProduct } = useInventoryStore();
   const { addToCart } = useSalesStore();
   const [search, setSearch] = React.useState('');
 
@@ -15,12 +15,21 @@ export default function ProductSelection() {
   );
 
   const handleAddToCart = (productId: string, name: string, price: number) => {
-    addToCart({
-      productId,
-      name,
-      quantity: 1,
-      price,
-    });
+    const product = products.find(p => p.id === productId);
+    if (product && product.stock > 0) {
+      // Reduce stock by 1
+      updateProduct(productId, {
+        ...product,
+        stock: product.stock - 1
+      });
+      
+      addToCart({
+        productId,
+        name,
+        quantity: 1,
+        price,
+      });
+    }
   };
 
   return (
@@ -50,11 +59,11 @@ export default function ProductSelection() {
             </div>
             <div className="flex items-center justify-between">
               <span className="text-lg font-bold text-gray-900">
-                ${product.price.toFixed(2)}
+                Tsh.{product.price.toFixed(2)}
               </span>
               <button
                 onClick={() => handleAddToCart(product.id, product.name, product.price)}
-                className="flex items-center gap-2 px-3 py-1 text-sm text-white bg-blue-600 rounded-md hover:bg-blue-700"
+                className="flex items-center gap-2 px-3 py-1 text-sm text-white bg-blue-600 rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={product.stock === 0}
               >
                 <ShoppingCart className="h-4 w-4" />

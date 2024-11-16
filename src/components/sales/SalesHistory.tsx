@@ -23,14 +23,14 @@ export default function SalesHistory() {
             <div className="flex items-center justify-between mb-2">
               <div>
                 <span className="text-sm font-medium text-gray-900">
-                  Order #{sale.id}
+                  Sale #10b981:{sale.id}
                 </span>
                 <span className="ml-2 text-sm text-gray-500">
                   {new Date(sale.timestamp).toLocaleString()}
                 </span>
               </div>
               <span className="text-sm font-medium text-gray-900">
-                ${sale.total.toFixed(2)}
+              Tsh.{sale.total.toFixed(2)}
               </span>
             </div>
             <div className="space-y-1">
@@ -41,7 +41,7 @@ export default function SalesHistory() {
                 >
                   <span>{getProductName(item.productId)}</span>
                   <span>
-                    {item.quantity} × ${item.price.toFixed(2)}
+                    {item.quantity} × Tsh.{item.price.toFixed(2)}
                   </span>
                 </div>
               ))}
