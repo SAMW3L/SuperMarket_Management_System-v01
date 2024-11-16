@@ -113,7 +113,7 @@ export default function ReportsPage() {
         });
 
         return filteredSales.map(s => ({
-          'Order ID': s.id,
+          'Sale ID': s.id,
           'Employee': s.employeeName,
           'Date': new Date(s.timestamp).toLocaleDateString(),
           'Items': s.items.map(item => `${item.quantity}x ${item.name}`).join(', '),

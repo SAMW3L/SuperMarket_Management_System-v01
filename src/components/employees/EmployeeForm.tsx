@@ -84,8 +84,7 @@ export default function EmployeeForm({ employee, onSubmit, onClose }: EmployeeFo
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-1"
             >
               <option value="">Select a role</option>
-              <option value="Store Manager">Store Manager</option>
-              <option value="Assistant Manager">Assistant Manager</option>
+              <option value="Store Manager">Manager</option>
               <option value="Cashier">Cashier</option>
               <option value="Stock Clerk">Stock Clerk</option>
             </select>
@@ -102,8 +101,7 @@ export default function EmployeeForm({ employee, onSubmit, onClose }: EmployeeFo
               <option value="">Select a department</option>
               <option value="Management">Management</option>
               <option value="Sales">Sales</option>
-              <option value="Inventory">Inventory</option>
-              <option value="Customer Service">Customer Service</option>
+              <option value="Inventory">Store</option>
             </select>
           </div>
 
